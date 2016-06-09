@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PickinTunes.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PickinTunes
 {
@@ -27,6 +29,9 @@ namespace PickinTunes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=PickinTunes;Trusted_Connection=True;";
+            services.AddDbContext<PickinTunesContext>(options => options.UseSqlServer(connection));
+
             // Add framework services.
             services.AddMvc();
         }
