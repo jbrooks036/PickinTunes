@@ -9,6 +9,6 @@ namespace PickinTunes.Models
     public class Tune
     {
         public int TuneId { get; set; }
-        public int TuneTitle { get; set; }
+        public string TuneTitle { get; set; }
     }
 }
