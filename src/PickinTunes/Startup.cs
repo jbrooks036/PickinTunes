@@ -34,6 +34,7 @@ namespace PickinTunes
 
             // Add framework services.
             services.AddMvc();
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +43,13 @@ namespace PickinTunes
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Tune}/{action=Get}/{id?}");
+                }
+            );
         }
     }
 }

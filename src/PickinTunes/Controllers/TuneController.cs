@@ -11,9 +11,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace PickinTunes.Controllers
 {
-    [Route("api/[controller]")]
-    [Produces("application/json")]
-    [EnableCors("AllowDevelopmentEnvironment")]
     public class TuneController : Controller
     {
         private PickinTunesContext _context;
@@ -23,8 +20,11 @@ namespace PickinTunes.Controllers
             _context = context;
         }
 
-        // GET api/tunes
+        // GET api/tune
         [HttpGet]
+        [Route("api/tune")]
+        [Produces("application/json")]
+        [EnableCors("AllowAll")]
         public IActionResult Get()
         {
             if (!ModelState.IsValid)
@@ -38,7 +38,7 @@ namespace PickinTunes.Controllers
             return Ok(tune);
         }
 
-        // GET api/values/5
+        // GET api/tune/5
         [HttpGet("{id}", Name = "GetTune")]
         public IActionResult Get(int id)
         {
@@ -57,9 +57,9 @@ namespace PickinTunes.Controllers
             return Ok(tune);
         }
 
-        // POST api/tunes
+        // POST api/tune
         [HttpPost]
-        public IActionResult Post([FromBody]Tune tune)
+        public IActionResult AddTune([FromBody]Tune tune)
         {
             if (!ModelState.IsValid)
             {
@@ -73,14 +73,7 @@ namespace PickinTunes.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TuneExists(tune.TuneId))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return CreatedAtRoute("GetTune", new { id = tune.TuneId }, tune);
