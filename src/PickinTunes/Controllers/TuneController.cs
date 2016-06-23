@@ -24,7 +24,7 @@ namespace PickinTunes.Controllers
         [HttpGet]
         [Route("api/tune")]
         [Produces("application/json")]
-        [EnableCors("AllowAll")]
+        [EnableCors("AllowDevelopmentEnvironment")]
         public IActionResult Get()
         {
             if (!ModelState.IsValid)
@@ -59,6 +59,7 @@ namespace PickinTunes.Controllers
 
         // POST api/tune
         [HttpPost]
+        [EnableCors("AllowDevelopmentEnvironment")]
         public IActionResult AddTune([FromBody]Tune tune)
         {
             if (!ModelState.IsValid)
