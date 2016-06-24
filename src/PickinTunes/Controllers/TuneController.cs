@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace PickinTunes.Controllers
 {
+    [Route("api/tune")]
+    [Produces("application/json")]
+    [EnableCors("AllowDevelopmentEnvironment")]
     public class TuneController : Controller
     {
         private PickinTunesContext _context;
@@ -22,9 +25,6 @@ namespace PickinTunes.Controllers
 
         // GET api/tune
         [HttpGet]
-        [Route("api/tune")]
-        [Produces("application/json")]
-        [EnableCors("AllowAll")]
         public IActionResult Get()
         {
             if (!ModelState.IsValid)
@@ -59,6 +59,7 @@ namespace PickinTunes.Controllers
 
         // POST api/tune
         [HttpPost]
+        [EnableCors("AllowDevelopmentEnvironment")]
         public IActionResult AddTune([FromBody]Tune tune)
         {
             if (!ModelState.IsValid)
