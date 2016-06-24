@@ -80,6 +80,28 @@ namespace PickinTunes.Controllers
             return CreatedAtRoute("GetTune", new { id = tune.TuneId }, tune);
         }
 
+
+        // DELETE api/tune/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Tune tune = _context.Tune.Single(m => m.TuneId == id);
+            if (tune == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tune.Remove(tune);
+            _context.SaveChanges();
+
+            return Ok(tune);
+        }
+
         private bool TuneExists(int id)
         {
             return _context.Tune.Count(e => e.TuneId == id) > 0;
