@@ -11,5 +11,6 @@ namespace PickinTunes.Models
         public PickinTunesContext(DbContextOptions<PickinTunesContext> options) : base(options) { }
 
         public DbSet<Tune> Tune { get; set; }
+        public DbSet<Artist> Artist { get; set; }
     }
 }

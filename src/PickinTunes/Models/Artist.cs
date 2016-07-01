@@ -6,11 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PickinTunes.Models
 {
-    public class Tune
+    public class Artist
     {
-        public int TuneId { get; set; }
-        public string TuneTitle { get; set; }
-
-        public ICollection<Artist> Artists { get; set; }
+        public int ArtistId { get; set; }
+        public string ArtistName { get; set; }
     }
 }
