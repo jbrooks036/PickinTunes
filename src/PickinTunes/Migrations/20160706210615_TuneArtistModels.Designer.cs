@@ -8,9 +8,10 @@ using PickinTunes.Models;
 namespace PickinTunes.Migrations
 {
     [DbContext(typeof(PickinTunesContext))]
-    partial class PickinTunesContextModelSnapshot : ModelSnapshot
+    [Migration("20160706210615_TuneArtistModels")]
+    partial class TuneArtistModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
