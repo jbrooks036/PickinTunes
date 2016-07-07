@@ -8,8 +8,8 @@ using PickinTunes.Models;
 namespace PickinTunes.Migrations
 {
     [DbContext(typeof(PickinTunesContext))]
-    [Migration("20160701210035_Add-Migration add-artist-model")]
-    partial class AddMigrationaddartistmodel
+    [Migration("20160707204954_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,11 +24,7 @@ namespace PickinTunes.Migrations
 
                     b.Property<string>("ArtistName");
 
-                    b.Property<int?>("TuneId");
-
                     b.HasKey("ArtistId");
-
-                    b.HasIndex("TuneId");
 
                     b.ToTable("Artist");
                 });
@@ -38,18 +34,23 @@ namespace PickinTunes.Migrations
                     b.Property<int>("TuneId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("ArtistId");
+
                     b.Property<string>("TuneTitle");
 
                     b.HasKey("TuneId");
 
+                    b.HasIndex("ArtistId");
+
                     b.ToTable("Tune");
                 });
 
-            modelBuilder.Entity("PickinTunes.Models.Artist", b =>
+            modelBuilder.Entity("PickinTunes.Models.Tune", b =>
                 {
-                    b.HasOne("PickinTunes.Models.Tune")
+                    b.HasOne("PickinTunes.Models.Artist")
                         .WithMany()
-                        .HasForeignKey("TuneId");
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
