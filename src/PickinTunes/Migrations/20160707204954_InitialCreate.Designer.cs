@@ -8,8 +8,8 @@ using PickinTunes.Models;
 namespace PickinTunes.Migrations
 {
     [DbContext(typeof(PickinTunesContext))]
-    [Migration("20160706210615_TuneArtistModels")]
-    partial class TuneArtistModels
+    [Migration("20160707204954_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
