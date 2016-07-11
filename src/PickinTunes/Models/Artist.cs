@@ -13,7 +13,7 @@ namespace PickinTunes.Models
         public int ArtistId { get; set; }
         public string ArtistName { get; set; }
 
-        public ICollection<Tune> Tunes { get; set; }
+        // public ICollection<Tune> Tunes { get; set; }
 
     }
 }
