@@ -61,7 +61,7 @@ namespace PickinTunes
                         template: "{controller=Tune}/{action=Get}/{id?}");
                 }
             );
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowDevelopmentEnvironment");
         }
     }
 }

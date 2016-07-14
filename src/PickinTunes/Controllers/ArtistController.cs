@@ -23,6 +23,21 @@ namespace PickinTunes.Controllers
             _context = context;
         }
 
+        // GET api/artist
+        [HttpGet]
+        public IActionResult Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IQueryable<Artist> artist = from a in _context.Artist
+                                    select a;
+
+            return Ok(artist);
+        }
+
         // GET api/artist/5
         [HttpGet("{id}", Name = "GetArtist")]
         public IActionResult Get(int id)
