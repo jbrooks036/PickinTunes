@@ -32,10 +32,17 @@ namespace PickinTunes.Controllers
                 return BadRequest(ModelState);
             }
 
-            IQueryable<Tune> tune = from t in _context.Tune
-                                              select t;
+            IQueryable<Tune> tunes = from t in _context.Tune
+                                     join a in _context.Artist on t.ArtistId equals a.ArtistId
+                                     select new Tune
+                                     {
+                                         TuneId = t.TuneId,
+                                         TuneTitle = t.TuneTitle,
+                                         ArtistId = t.ArtistId,
+                                         Artist = a
+                                     };
 
-            return Ok(tune);
+            return Ok(tunes);
         }
 
         // GET api/tune/5
@@ -66,6 +73,8 @@ namespace PickinTunes.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+//            tune.Artist = Get(Artist tune.ArtistId);
 
             _context.Tune.Add(tune);
             try
