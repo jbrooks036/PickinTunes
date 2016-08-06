@@ -57,6 +57,36 @@ namespace PickinTunes.Controllers
             return Ok(artist);
         }
 
+        // GET api/artist/5/tunes
+        [HttpGet("{id}/tunes")]
+        public IActionResult GetArtistTunes(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // this block may not be needed
+            Artist artist = _context.Artist.Single(m => m.ArtistId == id);
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            // get the tunes associated with this artist
+            IQueryable<Tune> tunes = from t in _context.Tune
+                                     join a in _context.Artist on t.ArtistId equals a.ArtistId
+                                     select new Tune
+                                     {
+                                         TuneId = t.TuneId,
+                                         TuneTitle = t.TuneTitle,
+                                         ArtistId = t.ArtistId,
+                                         Artist = a
+                                     };
+
+            return Ok(tunes);
+        }
+
         // POST api/artist
         [HttpPost]
         [EnableCors("AllowDevelopmentEnvironment")]
