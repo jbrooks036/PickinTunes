@@ -59,6 +59,9 @@ namespace PickinTunes
                     routes.MapRoute(
                         name: "default",
                         template: "{controller=Tune}/{action=Get}/{id?}");
+                    routes.MapRoute(
+                        name: "default2",
+                        template: "{controller=Artist}/{action=GetArtistTunes}/{id}/tunes");
                 }
             );
             app.UseCors("AllowDevelopmentEnvironment");
