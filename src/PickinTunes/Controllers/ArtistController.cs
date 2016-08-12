@@ -74,8 +74,9 @@ namespace PickinTunes.Controllers
             }
 
             // get the tunes associated with this artist
-            IQueryable<Tune> tunes = from t in _context.Tune
+            IQueryable<Tune> tunes = from t in _context.Tune.Where(t => t.ArtistId == id)
                                      join a in _context.Artist on t.ArtistId equals a.ArtistId
+                                     where a.ArtistId == id
                                      select new Tune
                                      {
                                          TuneId = t.TuneId,
