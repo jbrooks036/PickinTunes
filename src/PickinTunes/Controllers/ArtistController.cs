@@ -66,7 +66,7 @@ namespace PickinTunes.Controllers
                 return BadRequest(ModelState);
             }
 
-            // this block may not be needed
+            // check to make sure there is such an artist
             Artist artist = _context.Artist.Single(m => m.ArtistId == id);
             if (artist == null)
             {
