@@ -34,7 +34,7 @@ namespace PickinTunes
 
             // Add framework services.
             services.AddMvc();
-            // MarkZaWill only uses services.AddCors() [no params]
+
             // Allow any header and any method on a request from my local development machine
             services.AddCors(options =>
             {
@@ -53,7 +53,6 @@ namespace PickinTunes
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            // app.UseMvc();
             app.UseMvc(routes =>
                 {
                     routes.MapRoute(

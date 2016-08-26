@@ -74,8 +74,6 @@ namespace PickinTunes.Controllers
                 return BadRequest(ModelState);
             }
 
-//            tune.Artist = Get(Artist tune.ArtistId);
-
             _context.Tune.Add(tune);
             try
             {
